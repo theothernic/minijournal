@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', \App\Http\Controllers\Journal\SingleController::class)->name('home');
+Route::get('dashboard', \App\Http\Controllers\User\DashboardController::class)->name('dashboard');
+Route::get('login', \App\Http\Controllers\Auth\LoginController::class)->name('login');
+Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'handle'])->name('login.handler');
+
+Route::middleware('auth')->group(function () {
+    Route::get('editor/{id?}', \App\Http\Controllers\Journal\EditorController::class)->name('editor');
+    Route::post('editor', [\App\Http\Controllers\Journal\EditorController::class, 'store'])->name('editor.publish');
 });
