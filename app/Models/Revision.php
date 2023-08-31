@@ -10,6 +10,13 @@
         use HasUuids, SoftDeletes;
 
         protected $keyType = 'string';
+
+        protected $fillable = [
+            'entry_id',
+            'body',
+            'body_html'
+        ];
+
         public function entry()
         {
             return $this->belongsTo(Entry::class);

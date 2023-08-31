@@ -14,7 +14,7 @@
                 'user_id' => Auth::user()->id,
             ]);
 
-            $entry->revisions->save(new Revision([
+            $entry->revisions()->save(new Revision([
                 'body' => $data['body']
             ]));
 

@@ -3,6 +3,7 @@
 
     use App\Http\Requests\StoreEntryRequest;
     use App\Services\JournalService;
+    use Illuminate\Support\Facades\Auth;
 
     class EditorController
     {

@@ -11,6 +11,16 @@
 
         protected $keyType = 'string';
 
+        protected $fillable = [
+            'user_id',
+            'title',
+            'publish_at'
+        ];
+
+        public function author()
+        {
+            return $this->belongsTo(User::class);
+        }
 
         public function revisions()
         {
