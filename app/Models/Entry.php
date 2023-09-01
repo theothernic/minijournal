@@ -3,7 +3,10 @@
 
     use Illuminate\Database\Eloquent\Concerns\HasUuids;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Relations\BelongsTo;
+    use Illuminate\Database\Eloquent\Relations\HasMany;
     use Illuminate\Database\Eloquent\SoftDeletes;
+    use PhpParser\Node\Expr\AssignOp\Mod;
 
     class Entry extends Model
     {
@@ -17,13 +20,19 @@
             'publish_at'
         ];
 
-        public function author()
+        public function author(): BelongsTo|null
         {
-            return $this->belongsTo(User::class);
+            return $this->belongsTo(User::class, 'user_id');
         }
 
-        public function revisions()
+        public function revisions(): HasMany|null
         {
             return $this->hasMany(Revision::class);
+        }
+
+
+        public function latestRevision(): Model|HasMany|null
+        {
+            return $this->revisions()->orderByDesc('created_at')->first();
         }
     }

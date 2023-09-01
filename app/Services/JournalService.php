@@ -21,4 +21,10 @@
 
             return $entry;
         }
+
+
+        public function latest()
+        {
+            return Entry::orderBy('created_at', 'desc')->first();
+        }
     }
