@@ -33,6 +33,7 @@
             $entryDate = $record->publish_at ?? $record->created_at;
 
             return new SingleEntryViewModel([
+                'entryId' => $record->id,
                 'title' => $record->title,
                 'author' => $record->author->name,
                 'body' => $record->latestRevision()->body,

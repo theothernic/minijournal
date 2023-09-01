@@ -2,7 +2,7 @@
 @section('title', $page->title)
 
 @section('content')
-    <article>
+    <article data-id="{{ $page->entryId }}">
         <header>
             <h1>{{ $page->entryDate }}: {{ $page->title }}</h1>
         </header>
