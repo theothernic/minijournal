@@ -1,5 +1,5 @@
 <?php
-    namespace App\ViewModels;
+    namespace App\View\Models;
 
     class SingleEntryViewModel extends Page
     {
@@ -14,6 +14,7 @@
         public string $author = '';
 
         public string $entryDate = '';
+        public string $entryTitle = '';
 
         public function __construct(mixed $data)
         {

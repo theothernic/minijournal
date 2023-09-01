@@ -8,6 +8,7 @@
     <title>@yield('title') {{ config('app.name') }}</title>
 
     @vite(['resources/js/app.js'])
+    @stack('scripts')
 </head>
 <body>
     <header id="AppHeader">

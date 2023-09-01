@@ -4,9 +4,8 @@
     use App\Models\Entry;
     use App\Models\Slug;
     use App\Services\JournalService;
-    use App\ViewModels\SingleEntryViewModel;
+    use App\View\Models\SingleEntryViewModel;
     use Illuminate\Support\Carbon;
-    use Illuminate\Support\Facades\DB;
 
     class SingleController
     {
@@ -51,16 +50,19 @@
         private function buildViewModel(Entry $record): SingleEntryViewModel
         {
             $entryDate = $record->publish_at ?? $record->created_at;
-
+            $formattedEntryDate = Carbon::make($entryDate)->timezone($record->author->tz)->format('F j, Y');
 
             return new SingleEntryViewModel([
+                'layout' => 'simple',
                 'entryId' => $record->id,
-                'title' => $record->title,
+                'canonicalUrl' => url()->route('journal.entry', $record->slug->value),
+                'title' => sprintf('Journal Entry: %s, written on %s', $record->title, $formattedEntryDate),
+                'entryTitle' => $record->title,
                 'author' => $record->author->name,
                 'slug' => $record->slug->value,
-                'body' => $record->latestRevision()->body,
+                'body' => nl2br($record->latestRevision()->body),
                 'htmlBody' => $record->latestRevision()->htmlBody ?? '',
-                'entryDate' => Carbon::make($entryDate)->format('F d, Y')
+                'entryDate' => $formattedEntryDate
             ]);
         }
     }

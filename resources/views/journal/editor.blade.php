@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Editor')
 
+@push('scripts')
+    @vite(['resources/js/editor.js'])
+@endpush
+
 
 @section('content')
     <form id="frmEntryEditor" method="post" action="{{ route('editor') }}">
@@ -8,7 +12,7 @@
 
         <div class="control">
             <label for="txtEntryTitle">Title</label>
-            <input id="txtEntryTitle" name="title" />
+            <input type="text" id="txtEntryTitle" name="title" />
         </div>
 
 

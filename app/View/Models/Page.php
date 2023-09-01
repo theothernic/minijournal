@@ -1,5 +1,5 @@
 <?php
-    namespace App\ViewModels;
+    namespace App\View\Models;
 
     class Page extends ViewModel
     {
@@ -9,4 +9,8 @@
             'keywords' => '',
             'description' => ''
         ];
+
+        public string $layout = 'default';
+
+        public string $canonicalUrl = '';
     }

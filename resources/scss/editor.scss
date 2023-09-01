@@ -1,0 +1,19 @@
+
+main {
+    margin: 0 auto;
+    width: 67vw;
+}
+
+input[type=text],
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.control {
+    margin: 0.5rem 0;
+
+    #txtEntryTitle {
+        font-size: 2rem;
+    }
+}

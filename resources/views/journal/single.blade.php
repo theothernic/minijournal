@@ -1,19 +1,20 @@
-@extends('layouts.minimal')
+@extends(sprintf('layouts.%s', $page->layout ?? 'default'))
 @section('title', $page->title)
 
 @section('content')
-    <article data-id="{{ $page->entryId }}">
+    <article class="hentry" data-id="{{ $page->entryId }}">
         <header>
-            <h1>{{ $page->entryDate }}: {{ $page->title }}</h1>
+            <div class="entry-meta">
+                <h1 class="title">{{ $page->entryTitle }}</h1>
+                <a class="permalink" title="Permalink to '{{ $page->entryTitle }}'" href="{{ $page->canonicalUrl }}">#</a>
+            </div>
+
+
+            <h2 class="dateline">{{ $page->entryDate }}</h2>
         </header>
 
-        <div id="body">
-            @if($page->hasHtmlBody())
-                {!! $page->htmlBody !!}
-            @else
-                {{ nl2br($page->body) }}
-            @endif
-
+        <div class="body">
+            {!! $page->body !!}
         </div>
     </article>
 @endsection
