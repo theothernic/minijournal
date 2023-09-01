@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Journal\SingleController::class, 'latest'])->name('home');
+
+Route::get('entry/{slug}.html', \App\Http\Controllers\Journal\SingleController::class)->name('journal.entry');
+
+
 Route::get('login', \App\Http\Controllers\Auth\LoginController::class)->name('login');
 Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'handle'])->name('login.handler');
 

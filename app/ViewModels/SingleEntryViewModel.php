@@ -6,6 +6,8 @@
         public string $id;
         public string $entryId = '';
 
+        public string $slug = '';
+
         public string $body;
         public string $htmlBody;
 

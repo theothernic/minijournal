@@ -5,6 +5,7 @@
     use Illuminate\Database\Eloquent\Model;
     use Illuminate\Database\Eloquent\Relations\BelongsTo;
     use Illuminate\Database\Eloquent\Relations\HasMany;
+    use Illuminate\Database\Eloquent\Relations\HasOne;
     use Illuminate\Database\Eloquent\SoftDeletes;
     use PhpParser\Node\Expr\AssignOp\Mod;
 
@@ -28,6 +29,11 @@
         public function revisions(): HasMany|null
         {
             return $this->hasMany(Revision::class);
+        }
+
+        public function slug() : HasOne|null
+        {
+            return $this->hasOne(Slug::class);
         }
 
 
